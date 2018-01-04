@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "815761830826",
+    "firebase_url": "https://drawingfold.firebaseio.com",
+    "project_id": "drawingfold",
+    "storage_bucket": "drawingfold.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815761830826:android:6619926f5f27156e",
+        "android_client_info": {
+          "package_name": "com.vito.drawingfold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815761830826-bfd6sfb5r4mntsa6bktc2sv0nt0cq53j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vito.drawingfold",
+            "certificate_hash": "34febe3461385178d1dea4d716b7b9a0b70f3e44"
+          }
+        },
+        {
+          "client_id": "815761830826-cflbu1c00k5u3qcjaurssnbdeh0c3js3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh5uA9hxbVQyBEA6Ag_au5SdYcMsf-nYo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815761830826-cflbu1c00k5u3qcjaurssnbdeh0c3js3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
