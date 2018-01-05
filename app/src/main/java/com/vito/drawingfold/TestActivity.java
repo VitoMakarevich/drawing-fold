@@ -1,5 +1,6 @@
 package com.vito.drawingfold;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,11 +22,15 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 public class TestActivity extends AppCompatActivity {
+
+    private static final String ARG_OPENED_TAB = "com.vito.drawingfold.openedTab";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -59,13 +64,13 @@ public class TestActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
+        MobileAds.initialize(this, "ca-app-pub-6875026752789410~3241305894");
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId(getString(R.string.inter_ad_unit_id));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -75,12 +80,28 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
-    public void showInter(){
-        if (mInterstitialAd.isLoaded()) {
+    public void showFold(final int type, final String name){
+        mInterstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdClosed() {
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                startFold(type, name);
+            }
+        });
+        if(mInterstitialAd.isLoaded()){
             mInterstitialAd.show();
+        }
+        else{
+            startFold(type, name);
         }
     }
 
+    private void startFold(int type, String name){
+        Intent i = new Intent(this, FoldActivity.class);
+        i.putExtra(FoldActivity.ARG_IMAGE_NAME, name);
+        i.putExtra(FoldActivity.ARG_IMAGE_TYPE, type);
+        startActivity(i);
+    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -131,7 +152,7 @@ public class TestActivity extends AppCompatActivity {
             mRecyclerView.setLayoutManager(mLayoutManager);
 
             // specify an adapter (see also next example)
-            mRecyclerAdapter = new RecyclerAdapter(types);
+            mRecyclerAdapter = new RecyclerAdapter(types, section);
             mRecyclerView.setAdapter(mRecyclerAdapter);
             return rootView;
         }

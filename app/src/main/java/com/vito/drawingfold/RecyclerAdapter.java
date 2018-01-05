@@ -17,6 +17,7 @@ import org.w3c.dom.Text;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private String[] mDataset;
+    private int mType;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -31,8 +32,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecyclerAdapter(String[] myDataset) {
+    public RecyclerAdapter(String[] myDataset, int type) {
         mDataset = myDataset;
+        mType = type;
     }
 
     // Create new views (invoked by the layout manager)
@@ -56,10 +58,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), FoldActivity.class);
-                i.putExtra(FoldActivity.ARG_IMAGE_NAME, mDataset[position]);
-                ((TestActivity)v.getContext()).showInter();
-                v.getContext().startActivity(i);
+                ((TestActivity)v.getContext()).showFold(mType, mDataset[position]);
             }
         });
 

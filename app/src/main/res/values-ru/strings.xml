@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Складывание чертежей</string>
+    <string name="tab_text_portrait">Портреные</string>
+    <string name="tab_text_land">Альбомные</string>
+    <string name="action_rate">Оценить приложение</string>
+</resources>
